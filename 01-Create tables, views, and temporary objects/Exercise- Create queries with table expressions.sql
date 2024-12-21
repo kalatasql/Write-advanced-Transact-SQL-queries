@@ -46,9 +46,9 @@ FROM SalesLT.vCustomerAddrCanada
 
 SELECT ProductID, Name,
        (CASE 
-	          WHEN Weight > 1000 THEN 'Heavy'
-	          ELSE 'Normal'
-	      END) AS WeightCategory,
+	    WHEN Weight > 1000 THEN 'Heavy'
+	    ELSE 'Normal'
+	END) AS WeightCategory,
        ListPrice 
 FROM SalesLT.Product
 
@@ -57,15 +57,15 @@ FROM SalesLT.Product
 --Make sure to select the following columns: ProductID, Name, Weight, ListPrice.
 
 SELECT drv_prd.ProductID,
-	     drv_prd.Name,
-	     drv_prd.WeightCategory,
-	     drv_prd.ListPrice
+       drv_prd.Name,
+       drv_prd.WeightCategory,
+       drv_prd.ListPrice
 FROM  
      (SELECT ProductID, Name,
 	          (CASE 
-		             WHEN Weight > 1000 THEN 'Heavy'
-		             ELSE 'Normal'
+		       WHEN Weight > 1000 THEN 'Heavy'
+		       ELSE 'Normal'
 	           END) AS WeightCategory,
-	           ListPrice 
+	     ListPrice 
 FROM SalesLT.Product) AS drv_prd --derived table
 WHERE drv_prd.ListPrice > 2000
