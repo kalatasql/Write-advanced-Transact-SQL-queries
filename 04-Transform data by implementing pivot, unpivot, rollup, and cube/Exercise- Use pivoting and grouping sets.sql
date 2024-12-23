@@ -49,7 +49,7 @@ FROM
      INNER JOIN SalesLT.ProductCategory pc ON p.ProductCategoryID = pc.ProductCategoryID) AS pc_tbl
 PIVOT
 (
-	   COUNT(PrdName) FOR Color IN ([Silver], [Black], [Yellow], [Red], [Blue], [Grey], [Multi], [White], [No color])
+     COUNT(PrdName) FOR Color IN ([Silver], [Black], [Yellow], [Red], [Blue], [Grey], [Multi], [White], [No color])
 ) AS ColorPivot
 
 
@@ -62,7 +62,7 @@ PIVOT
 --The grand total for all products by all saleseople
 
 SELECT ps.Product,
-	     ps.SalesPerson, 
-	     SUM(ps.TotalDue) as TotalSales
+       ps.SalesPerson, 
+       SUM(ps.TotalDue) as TotalSales
 FROM SalesLT.v_ProductSales ps
 GROUP BY ROLLUP(ps.Product, ps.SalesPerson)
